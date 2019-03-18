@@ -7,6 +7,8 @@ import com.example.Stalk.models.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class MessageService {
 
@@ -19,4 +21,13 @@ public class MessageService {
         MessageEntity entity = new MessageFormToEntityMapper().map(messageForm);
         messageRepository.save(entity);
     }
+    public String getMessage(Integer id, String key){
+        Optional<MessageEntity> entity = messageRepository.findById(id);
+        String message = "hahahah not this time";
+        if( entity.isPresent() && entity.get().getKey().equals(key)){
+            message=entity.get().getMessage();
+        }
+        return message;
+    }
+
 }
