@@ -29,5 +29,10 @@ public class MessageService {
         }
         return message;
     }
+    public String generateOutputMessage(Integer id, String key){
+
+        String message="Link:jhasdgfjhdsg/"+id+" activation code = "+key;
+        return message;
+    }
 
 }
