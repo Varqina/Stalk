@@ -13,7 +13,7 @@ public class MessageEntity {
     @Id @GeneratedValue
     private Integer id;
 
-    private Long key;
+    private String key;
     private String message;
 
     @Column(name = "creation_time")
