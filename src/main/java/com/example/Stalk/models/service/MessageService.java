@@ -29,7 +29,7 @@ public class MessageService {
         String message = "hahahah not this time";
         if( entity.isPresent() && entity.get().getPrivateKey().equals(privateKey)){
             message=entity.get().getMessage();
-            messageRepository.delete(entity);
+            messageRepository.deleteById(entity.get().getId());
         }
         return message;
     }

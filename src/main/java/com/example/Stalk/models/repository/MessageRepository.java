@@ -14,5 +14,4 @@ public interface MessageRepository extends CrudRepository <MessageEntity,Integer
     @Query(value="SELECT * FROM `message` WHERE `public_key` = ?1",nativeQuery = true)
     Optional<MessageEntity> getMessageByPublicKey(String publicKey);
 
-    void delete(Optional<MessageEntity> entity);
 }
