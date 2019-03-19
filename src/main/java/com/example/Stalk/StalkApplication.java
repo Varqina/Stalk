@@ -1,4 +1,4 @@
-package com.example.Stalk.models;
+package com.example.Stalk;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

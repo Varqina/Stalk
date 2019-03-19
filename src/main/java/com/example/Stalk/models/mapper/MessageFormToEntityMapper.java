@@ -1,5 +1,6 @@
 package com.example.Stalk.models.mapper;
 
+
 import com.example.Stalk.models.entity.MessageEntity;
 import com.example.Stalk.models.forms.AddMessageForm;
 import com.example.Stalk.models.service.HashService;
@@ -13,7 +14,8 @@ public class MessageFormToEntityMapper {
     public MessageEntity map(AddMessageForm form) {
         MessageEntity messageEntity = new MessageEntity();
         messageEntity.setMessage(form.getMessage());
-        messageEntity.setKey(hashService.hashRandom());
+        messageEntity.setPublicKey(hashService.hashRandom());
+        messageEntity.setPrivateKey(hashService.hashRandom());
         return messageEntity;
     }
 }
