@@ -18,8 +18,10 @@ public class MessageService {
 
 
 
-    public void saveMessage(AddMessageForm messageForm){
+    public void saveMessage(AddMessageForm messageForm, String publicKey, String privateKey){
         MessageEntity entity = new MessageFormToEntityMapper().map(messageForm);
+        entity.setPrivateKey(privateKey);
+        entity.setPublicKey(publicKey);
         messageRepository.save(entity);
     }
     public String getMessage(String publicKey, String privateKey){
@@ -31,10 +33,9 @@ public class MessageService {
         }
         return message;
     }
-    public String generateOutputMessage(Integer id, String key){
+    public String generateOutputMessage(String publicKey, String privateKey){
 
-        String message="Link:jhasdgfjhdsg/"+id+" activation code = "+key;
+        String message="Link:jhasdgfjhdsg/"+publicKey+" activation code = "+privateKey;
         return message;
     }
-
 }
