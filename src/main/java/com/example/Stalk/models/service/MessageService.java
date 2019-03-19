@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+
 @Service
 public class MessageService {
 
@@ -21,11 +22,12 @@ public class MessageService {
         MessageEntity entity = new MessageFormToEntityMapper().map(messageForm);
         messageRepository.save(entity);
     }
-    public String getMessage(Integer id, String key){
-        Optional<MessageEntity> entity = messageRepository.findById(id);
+    public String getMessage(String publicKey, String privateKey){
+        Optional<MessageEntity> entity = messageRepository.getMessageByPublicKey(publicKey);
         String message = "hahahah not this time";
-        if( entity.isPresent() && entity.get().getKey().equals(key)){
+        if( entity.isPresent() && entity.get().getPrivateKey().equals(privateKey)){
             message=entity.get().getMessage();
+            messageRepository.delete(entity);
         }
         return message;
     }
