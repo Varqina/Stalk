@@ -15,8 +15,8 @@ public class MessageController {
     @Autowired
     HashService hashService;
 
-    @GetMapping("/{id}")
-    public String getPrivateKey(Model model, @RequestParam("id") String publicKey){
+    @GetMapping("/{key}")
+    public String getPrivateKey(Model model, @RequestParam("key") String publicKey){
         model.addAttribute("id",publicKey);
         return "public";
     }
