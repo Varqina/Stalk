@@ -20,8 +20,8 @@ public class MessageController {
         model.addAttribute("key",publicKey);
         return "public";
     }
-    @PostMapping("/{id}")
-    public String displayMessage(@RequestParam("id") String publicKey, @ModelAttribute("private_key") String privateKey, Model model){
+    @PostMapping("/{key}")
+    public String displayMessage(@RequestParam("key") String publicKey, @ModelAttribute("private_key") String privateKey, Model model){
         model.addAttribute("message",messageService.getMessage(publicKey,privateKey));
         return "private";
     }
