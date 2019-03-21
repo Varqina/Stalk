@@ -13,7 +13,6 @@ public class HashService {
         for ( int i = 0; i < 10;i++){
             hash.append(random.nextInt(9));
         }
-
         return hash.toString();
     }
 }
