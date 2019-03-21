@@ -23,6 +23,8 @@ public class MessageController {
     @ResponseBody
     @PostMapping("/getMessage")
     public String displayMessage(@RequestParam("public") String publicKey   , @RequestParam("code") String privateKey, Model model){
+        System.out.println(publicKey);
+        System.out.println(privateKey);
         return messageService.getMessage(publicKey,privateKey);
        }
     @GetMapping("/")
