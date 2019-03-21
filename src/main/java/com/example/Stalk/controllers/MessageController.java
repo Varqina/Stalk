@@ -25,7 +25,7 @@ public class MessageController {
     public String displayMessage(@RequestParam("public") String publicKey   , @RequestParam("code") String privateKey, Model model){
         return messageService.getMessage(publicKey,privateKey);
        }
-    @GetMapping("/new")
+    @GetMapping("/")
     public String prepareMessage(Model model){
         model.addAttribute("message_content", new AddMessageForm());
         return "new";
