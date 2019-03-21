@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="#" th:action="@{/new}" th:object="${message_content}" method="post">
+<form action="#" th:action="@{/}" th:object="${message_content}" method="post">
     <center><p><input type="text" th:field="*{message}"></p></center>
     <center><p><input type="submit" value="Submit"/></p></center>
 </form>
