@@ -6,6 +6,8 @@ import com.example.Stalk.models.forms.AddMessageForm;
 import com.example.Stalk.models.service.HashService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
+
 public class MessageFormToEntityMapper {
 
     @Autowired
@@ -14,8 +16,7 @@ public class MessageFormToEntityMapper {
     public MessageEntity map(AddMessageForm form) {
         MessageEntity messageEntity = new MessageEntity();
         messageEntity.setMessage(form.getMessage());
-        messageEntity.setPublicKey(hashService.hashRandom());
-        messageEntity.setPrivateKey(hashService.hashRandom());
+        messageEntity.setCreationTime(LocalDateTime.now());
         return messageEntity;
     }
 }
