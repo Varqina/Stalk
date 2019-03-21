@@ -16,32 +16,26 @@ public class MessageController {
     HashService hashService;
 
     @GetMapping("/{key}")
-    public String getPrivateKey(Model model, @RequestParam("key") String publicKey){
-        model.addAttribute("key",publicKey);
+    public String getPrivateKey(Model model,@PathVariable("key") String publicKey){
+        model.addAttribute("public",publicKey);
         return "public";
     }
-    @PostMapping("/{key}")
-    public String displayMessage(@RequestParam("key") String publicKey, @ModelAttribute("private_key") String privateKey, Model model){
-        model.addAttribute("message",messageService.getMessage(publicKey,privateKey));
-        return "private";
-    }
+    @ResponseBody
+    @PostMapping("/getMessage")
+    public String displayMessage(@RequestParam("public") String publicKey   , @RequestParam("code") String privateKey, Model model){
+        return messageService.getMessage(publicKey,privateKey);
+       }
     @GetMapping("/new")
     public String prepareMessage(Model model){
         model.addAttribute("message_content", new AddMessageForm());
         return "new";
     }
-    @PostMapping("/new")
+    @PostMapping("/")
     @ResponseBody
     public String createNewMessage(@ModelAttribute AddMessageForm message){
         String publicKey=hashService.hashRandom();
         String privateKey=hashService.hashRandom();
         messageService.saveMessage(message,publicKey,privateKey);
         return messageService.generateOutputMessage(publicKey,privateKey);
-    }
-    @GetMapping("/test")
-    @ResponseBody
-    public String test(){
-        System.out.println("wyswietlam:"+hashService.hashRandom());
-        return "test";
     }
 }
