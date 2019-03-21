@@ -17,7 +17,7 @@ public class MessageController {
 
     @GetMapping("/{key}")
     public String getPrivateKey(Model model, @RequestParam("key") String publicKey){
-        model.addAttribute("id",publicKey);
+        model.addAttribute("key",publicKey);
         return "public";
     }
     @PostMapping("/{id}")
@@ -37,5 +37,11 @@ public class MessageController {
         String privateKey=hashService.hashRandom();
         messageService.saveMessage(message,publicKey,privateKey);
         return messageService.generateOutputMessage(publicKey,privateKey);
+    }
+    @GetMapping("/test")
+    @ResponseBody
+    public String test(){
+        System.out.println("wyswietlam:"+hashService.hashRandom());
+        return "test";
     }
 }
