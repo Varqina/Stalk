@@ -12,9 +12,12 @@ public class MaintenanceService {
 
     public void start() throws InterruptedException, IOException {
         Document doc;
+        int counter = 0;
         while(true){
             TimeUnit.MINUTES.sleep(5);
             doc = Jsoup.connect("https://secretalk.herokuapp.com/").get();
+            counter++;
+            System.out.println(counter);
         }
     }
 }
