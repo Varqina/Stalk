@@ -11,9 +11,10 @@ import java.util.concurrent.TimeUnit;
 public class MaintenanceService {
 
     public void start() throws InterruptedException, IOException {
+        Document doc;
         while(true){
             TimeUnit.MINUTES.sleep(5);
-            Document doc = Jsoup.connect("https://secretalk.herokuapp.com/").get();
+            doc = Jsoup.connect("https://secretalk.herokuapp.com/").get();
         }
     }
 }
