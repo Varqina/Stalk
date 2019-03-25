@@ -15,7 +15,7 @@ public class MessageController {
     @Autowired
     HashService hashService;
 
-    @GetMapping("/{key}")
+    @GetMapping("/key/{key}")
     public String getPrivateKey(Model model,@PathVariable("key") String publicKey){
         model.addAttribute("public",publicKey);
         return "public";
@@ -31,11 +31,12 @@ public class MessageController {
         return "new";
     }
     @PostMapping("/")
-    @ResponseBody
-    public String createNewMessage(@ModelAttribute AddMessageForm message){
+    public String createNewMessage(@ModelAttribute AddMessageForm message, Model model){
         String publicKey=hashService.hashRandom();
         String privateKey=hashService.hashRandom();
+        model.addAttribute("message_content", new AddMessageForm());
         messageService.saveMessage(message,publicKey,privateKey);
-        return messageService.generateOutputMessage(publicKey,privateKey);
+        model.addAttribute("activation_code",messageService.generateOutputMessage(publicKey,privateKey));
+        return "new";
     }
 }
