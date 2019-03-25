@@ -35,8 +35,9 @@ public class MessageService {
     }
     public String generateOutputMessage(String publicKey, String privateKey){
 
-        String message="<a href=https://secretalk.herokuapp.com/"+publicKey+">https://secretalk.herokuapp.com/"+publicKey+"</a> " +
-                "code = "+privateKey;
+//        String message="<a href=https://secretalk.herokuapp.com/"+publicKey+">https://secretalk.herokuapp.com/"+publicKey+"</a> " +
+//                "code = "+privateKey;
+        String message = "https://secretalk.herokuapp.com/key/"+publicKey+"  Activation code:"+ privateKey;
         return message;
     }
 }
