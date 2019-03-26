@@ -39,4 +39,6 @@ public class MessageController {
         model.addAttribute("activation_code",messageService.generateOutputMessage(publicKey,privateKey));
         return "new";
     }
+
+
 }
