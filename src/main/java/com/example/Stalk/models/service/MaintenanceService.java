@@ -32,24 +32,28 @@ public class MaintenanceService {
             }
         }
     }
+    public void test(){
+        clearDataBase();
+    }
     public void clearDataBase(){
         List temp=messageRepository.getIdFromDataBase();
+        System.out.println(temp.size());
         if(temp.size()>0){
             for (int i=0;i<temp.size();i++){
-                Optional<MessageEntity> entity=messageRepository.getMessageById(temp.indexOf(i));
+                Optional<MessageEntity> entity=messageRepository.getMessageById((Integer) temp.get(i));
                 if(entity.isPresent()){
-                    deleteIfExpired(entity,i);
+                    deleteIfExpired(entity);
                 }
             }
         }
     }
-    public void deleteIfExpired(Optional<MessageEntity> entity,Integer id){
+    public void deleteIfExpired(Optional<MessageEntity> entity){
         String data=entity.get().getCreationTime().toString();
         String actualData= LocalDateTime.now().toString();
         Integer creationTimeInteger=(Integer.parseInt(data.substring(11,13))*60)+Integer.parseInt(data.substring(14,16));
         Integer actualTimeInteger=(Integer.parseInt(actualData.substring(11,13))*60)+Integer.parseInt(actualData.substring(14,16));
-        if(actualTimeInteger-creationTimeInteger>15){
-            messageRepository.deleteById(id);
+        if(actualTimeInteger-creationTimeInteger>1){
+            messageRepository.deleteById(entity.get().getId());
         }
     }
 }
